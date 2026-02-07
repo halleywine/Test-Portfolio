@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HALLEYWINE | UI DESIGNER</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script>
+  window.initLucide = function() { if(window.lucide) lucide.createIcons(); };
+  document.addEventListener('DOMContentLoaded', function() { if(window.lucideLoaded) window.initLucide(); });
+</script>
+<style type="text/tailwindcss">
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --accent: #000000;
+  }
+  @theme inline {
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  
+  /* Brutalist Utilities */
+  .brutal-border {
+    @apply border border-black;
+  }
+  .brutal-hover {
+    @apply transition-all duration-300 hover:bg-black hover:text-white;
+  }
+  
+  /* Smooth Reveal Animation */
+  .reveal-text {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+  .reveal-text.active {
+    transform: translateY(0);
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .fade-up {
+    transform: translateY(40px);
+    opacity: 0;
+    transition: all 0.8s ease-out;
+  }
+  .fade-up.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Marquee */
+  .marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-content {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Custom Cursor Logic (CSS only for hover interactions) */
+  .hover-invert {
+    mix-blend-mode: difference;
+    color: white;
+  }
+  
+  /* Image Filters */
+  .grayscale-img {
+    filter: grayscale(100%) contrast(110%);
+    transition: filter 0.5s ease;
+  }
+  .grayscale-img:hover {
+    filter: grayscale(0%) contrast(100%);
+  }
+</style>
+</head>
+<body class="bg-white text-black font-sans antialiased selection:bg-black selection:text-white overflow-x-hidden">
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference text-white">
+  <a href="#" class="font-bold text-xl tracking-tighter uppercase font-mono">HALLEYWINE [UI]</a>
+  <div class="hidden md:flex gap-8 font-mono text-sm uppercase tracking-wide">
+    <a href="#work" class="hover:underline underline-offset-4">Work</a>
+    <a href="#services" class="hover:underline underline-offset-4">Services</a>
+    <a href="#contact" class="hover:underline underline-offset-4">Contact</a>
+  </div>
+  <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="md:hidden">
+    <i data-lucide="menu" class="size-6"></i>
+  </button>
+</nav>
+
+<!-- Hero Section -->
+<header class="min-h-screen flex flex-col justify-end pb-12 px-6 pt-32 relative border-b border-black">
+  <div class="absolute top-0 right-0 w-full h-full -z-10 opacity-10 pointer-events-none overflow-hidden">
+    <div class="text-[20vw] font-bold leading-none text-right opacity-20 select-none">UI</div>
+  </div>
+  
+  <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+    <div class="lg:col-span-8">
+      <p class="font-mono text-sm mb-4 uppercase tracking-widest reveal-text trigger-on-load">Est. 2024 — Tokyo / Remote</p>
+      <h1 class="text-[clamp(3rem,8vw,8rem)] font-black leading-[0.9] tracking-tighter uppercase mb-6">
+        <div class="overflow-hidden"><span class="block reveal-text trigger-on-load" style="transition-delay: 0.1s">Digital</span></div>
+        <div class="overflow-hidden"><span class="block reveal-text trigger-on-load" style="transition-delay: 0.2s">Experience</span></div>
+        <div class="overflow-hidden"><span class="block reveal-text trigger-on-load" style="transition-delay: 0.3s">Designer</span></div>
+      </h1>
+      <p class="text-xl max-w-xl font-light leading-relaxed text-neutral-600 fade-up trigger-on-load" style="transition-delay: 0.5s">
+        Crafting raw, brutalist, and minimal digital interfaces for brands that refuse to blend in. Specialized in high-fashion and luxury aesthetics.
+      </p>
+    </div>
+    <div class="lg:col-span-4 flex flex-col justify-end">
+        <div class="relative w-full aspect-[3/4] overflow-hidden border border-black fade-up trigger-on-load" style="transition-delay: 0.6s">
+            <img src="assets/profile.jpg" 
+                 alt="Portrait" 
+                 class="object-cover w-full h-full grayscale-img scale-100 hover:scale-105 transition-transform duration-700">
+            <div class="absolute bottom-0 left-0 bg-black text-white px-2 py-1 font-mono text-xs uppercase">
+                Halleywine — Lead Designer
+            </div>
+        </div>
+        <div class="flex justify-between items-center mt-4 border-t border-black pt-4">
+            <span class="font-mono text-xs uppercase">Available for freelance</span>
+            <div class="flex gap-2">
+                <div class="size-3 bg-green-500 rounded-full animate-pulse"></div>
+            </div>
+        </div>
+    </div>
+  </div>
+</header>
+
+<!-- Infinite Marquee -->
+<div class="border-b border-black py-8 bg-black text-white overflow-hidden">
+    <div class="marquee-container font-mono text-xl md:text-3xl uppercase tracking-widest">
+        <div class="marquee-content">
+            UI DESIGN — ART DIRECTION — PROTOTYPING — FRONTEND — USER EXPERIENCE — BRAND IDENTITY — UI DESIGN — ART DIRECTION — PROTOTYPING — FRONTEND — USER EXPERIENCE — BRAND IDENTITY —
+        </div>
+    </div>
+</div>
+
+<!-- Featured Work -->
+<section id="work" class="py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex justify-between items-end mb-16 border-b border-black pb-6 fade-up">
+            <h2 class="text-6xl font-black uppercase tracking-tighter">Selected<br>Works</h2>
+            <span class="font-mono text-sm hidden md:block">[2023 — 2024]</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+            <!-- Project 1 -->
+            <article class="group cursor-pointer fade-up">
+                <div class="relative aspect-video overflow-hidden border border-black mb-4">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=450&fit=crop&saturation=-100" class="w-full h-full object-cover grayscale-img transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                </div>
+                <div class="flex justify-between items-start border-t border-black pt-3">
+                    <div>
+                        <h3 class="text-2xl font-bold uppercase group-hover:underline decoration-2 underline-offset-4">Maison Noire</h3>
+                        <p class="font-mono text-xs text-neutral-500 mt-1 uppercase">E-Commerce / Fashion</p>
+                    </div>
+                    <span class="font-mono text-xs border border-black rounded-full px-3 py-1">2024</span>
+                </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="group cursor-pointer fade-up" style="transition-delay: 0.2s">
+                <div class="relative aspect-video overflow-hidden border border-black mb-4">
+                    <img src="assets/building.jpg" class="w-full h-full object-cover grayscale-img transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="flex justify-between items-start border-t border-black pt-3">
+                    <div>
+                        <h3 class="text-2xl font-bold uppercase group-hover:underline decoration-2 underline-offset-4">Brutal Arch</h3>
+                        <p class="font-mono text-xs text-neutral-500 mt-1 uppercase">Portfolio / Architecture</p>
+                    </div>
+                    <span class="font-mono text-xs border border-black rounded-full px-3 py-1">2023</span>
+                </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="group cursor-pointer fade-up">
+                <div class="relative aspect-video overflow-hidden border border-black mb-4">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&h=450&fit=crop&saturation=-100" class="w-full h-full object-cover grayscale-img transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="flex justify-between items-start border-t border-black pt-3">
+                    <div>
+                        <h3 class="text-2xl font-bold uppercase group-hover:underline decoration-2 underline-offset-4">Tech Monolith</h3>
+                        <p class="font-mono text-xs text-neutral-500 mt-1 uppercase">SaaS / Dashboard</p>
+                    </div>
+                    <span class="font-mono text-xs border border-black rounded-full px-3 py-1">2023</span>
+                </div>
+            </article>
+
+            <!-- Project 4 -->
+            <article class="group cursor-pointer fade-up" style="transition-delay: 0.2s">
+                <div class="relative aspect-video overflow-hidden border border-black mb-4">
+                    <img src="assets/web.jpg" class="w-full h-full object-cover grayscale-img transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="flex justify-between items-start border-t border-black pt-3">
+                    <div>
+                        <h3 class="text-2xl font-bold uppercase group-hover:underline decoration-2 underline-offset-4">Vogue Edit</h3>
+                        <p class="font-mono text-xs text-neutral-500 mt-1 uppercase">Editorial / Web</p>
+                    </div>
+                    <span class="font-mono text-xs border border-black rounded-full px-3 py-1">2023</span>
+                </div>
+            </article>
+        </div>
+        
+        <div class="mt-16 text-center">
+            <button class="font-mono uppercase text-sm border border-black px-8 py-4 hover:bg-black hover:text-white transition-colors duration-300">View Full Archive</button>
+        </div>
+    </div>
+</section>
+
+<!-- Services (List View) -->
+<section id="services" class="py-24 px-6 bg-neutral-50 border-y border-black">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-4 fade-up">
+                <h2 class="text-5xl font-black uppercase tracking-tighter mb-6">Expertise</h2>
+                <p class="font-mono text-sm max-w-xs text-neutral-600">
+                    Comprehensive design solutions for digital-first brands. Focusing on modularity, scalability, and aesthetic impact.
+                </p>
+            </div>
+            <div class="lg:col-span-8 flex flex-col">
+                <!-- Service Item 1 -->
+                <div class="group border-t border-black py-8 transition-colors hover:bg-white fade-up">
+                    <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
+                        <h3 class="text-4xl md:text-5xl font-bold uppercase tracking-tight group-hover:translate-x-4 transition-transform duration-300">UI/UX Design</h3>
+                        <p class="font-mono text-xs uppercase opacity-0 group-hover:opacity-100 transition-opacity">01</p>
+                    </div>
+                    <p class="mt-4 max-w-md text-neutral-500 hidden group-hover:block animate-in fade-in slide-in-from-top-2 duration-300">
+                        Wireframing, prototyping, and high-fidelity interface design focused on conversion and brand identity.
+                    </p>
+                </div>
+                <!-- Service Item 2 -->
+                <div class="group border-t border-black py-8 transition-colors hover:bg-white fade-up" style="transition-delay: 0.1s">
+                    <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
+                        <h3 class="text-4xl md:text-5xl font-bold uppercase tracking-tight group-hover:translate-x-4 transition-transform duration-300">Development</h3>
+                        <p class="font-mono text-xs uppercase opacity-0 group-hover:opacity-100 transition-opacity">02</p>
+                    </div>
+                    <p class="mt-4 max-w-md text-neutral-500 hidden group-hover:block animate-in fade-in slide-in-from-top-2 duration-300">
+                        Frontend implementation using modern frameworks. Clean code, responsive layouts, and smooth interactions.
+                    </p>
+                </div>
+                <!-- Service Item 3 -->
+                <div class="group border-t border-b border-black py-8 transition-colors hover:bg-white fade-up" style="transition-delay: 0.2s">
+                    <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
+                        <h3 class="text-4xl md:text-5xl font-bold uppercase tracking-tight group-hover:translate-x-4 transition-transform duration-300">Art Direction</h3>
+                        <p class="font-mono text-xs uppercase opacity-0 group-hover:opacity-100 transition-opacity">03</p>
+                    </div>
+                    <p class="mt-4 max-w-md text-neutral-500 hidden group-hover:block animate-in fade-in slide-in-from-top-2 duration-300">
+                        Visual storytelling, asset creation, and defining the aesthetic guidelines for digital products.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact / Inquiry -->
+<section id="contact" class="min-h-screen flex flex-col justify-center py-24 px-6 relative">
+    <div class="max-w-4xl mx-auto w-full">
+        <div class="mb-12 text-center fade-up">
+            <h2 class="text-[clamp(3rem,6vw,6rem)] font-black uppercase tracking-tighter leading-none mb-4">Start a<br>Project</h2>
+            <p class="font-mono text-sm uppercase tracking-widest text-neutral-500">Available for Q4 2026</p>
+        </div>
+
+        <form onsubmit="handleFormSubmit(event)" class="space-y-8 fade-up" style="transition-delay: 0.2s">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="group relative">
+                    <label for="inputName" class="font-mono text-xs uppercase mb-2 block text-neutral-500">Name</label>
+                    <input type="text" id="inputName" required class="w-full bg-transparent border-b border-black py-3 text-xl font-bold uppercase placeholder-neutral-300 outline-none focus:border-b-4 transition-all" placeholder="John Doe">
+                </div>
+                <div class="group relative">
+                    <label for="inputEmail" class="font-mono text-xs uppercase mb-2 block text-neutral-500">Email</label>
+                    <input type="email" id="inputEmail" required class="w-full bg-transparent border-b border-black py-3 text-xl font-bold uppercase placeholder-neutral-300 outline-none focus:border-b-4 transition-all" placeholder="john@example.com">
+                </div>
+            </div>
+            
+            <div class="group relative">
+                <label for="selectService" class="font-mono text-xs uppercase mb-2 block text-neutral-500">Service</label>
+                <select id="selectService" class="w-full bg-transparent border-b border-black py-3 text-xl font-bold uppercase outline-none focus:border-b-4 transition-all appearance-none rounded-none">
+                    <option>UI Design</option>
+                    <option>Web Development</option>
+                    <option>Brand Identity</option>
+                    <option>Other</option>
+                </select>
+                <div class="absolute right-0 bottom-4 pointer-events-none">
+                    <i data-lucide="chevron-down" class="size-5"></i>
+                </div>
+            </div>
+
+            <div class="group relative">
+                <label for="inputMessage" class="font-mono text-xs uppercase mb-2 block text-neutral-500">Details</label>
+                <textarea id="inputMessage" rows="4" required class="w-full bg-transparent border-b border-black py-3 text-xl font-medium uppercase placeholder-neutral-300 outline-none focus:border-b-4 transition-all resize-none" placeholder="Tell me about your project..."></textarea>
+            </div>
+
+            <div class="pt-8 flex justify-center">
+                <button type="submit" class="group relative overflow-hidden bg-black text-white px-12 py-5 font-mono uppercase text-sm tracking-widest hover:bg-neutral-800 transition-all w-full md:w-auto">
+                    <span class="relative z-10 flex items-center gap-2 justify-center">
+                        Submit Inquiry <i data-lucide="arrow-right" class="size-4 group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="absolute bottom-6 left-0 w-full px-6 flex flex-col md:flex-row justify-between items-center font-mono text-xs uppercase text-neutral-400">
+        <p>&copy; 2026 Halleywine. All Rights Reserved.</p>
+        <div class="flex gap-4 mt-2 md:mt-0">
+            <a href="#" class="hover:text-black">Instagram</a>
+            <a href="#" class="hover:text-black">Twitter</a>
+            <a href="#" class="hover:text-black">LinkedIn</a>
+        </div>
+    </footer>
+</section>
+
+<!-- Success Modal -->
+<div id="successModal" class="fixed inset-0 bg-black/90 z-[100] hidden items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+    <div class="bg-white p-8 max-w-sm w-full text-center border-2 border-white transform translate-y-10 transition-transform duration-300" id="modalContent">
+        <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">
+            <i data-lucide="check" class="size-8"></i>
+        </div>
+        <h3 class="text-3xl font-black uppercase mb-2">Received</h3>
+        <p class="font-mono text-sm text-neutral-600 mb-8 uppercase">I will revert back to you within 24 hours.</p>
+        <button onclick="closeModal()" class="w-full bg-black text-white py-4 font-mono uppercase text-xs hover:bg-neutral-800 transition-colors">
+            Close
+        </button>
+    </div>
+</div>
+
+<script>
+    // Animation Observer
+    document.addEventListener('DOMContentLoaded', () => {
+        lucide.createIcons();
+
+        // Trigger load animations
+        setTimeout(() => {
+            document.querySelectorAll('.trigger-on-load').forEach(el => {
+                el.classList.add('active');
+            });
+        }, 100);
+
+        // Scroll Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optional: Stop observing once revealed
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up, .reveal-text:not(.trigger-on-load)').forEach(el => {
+            observer.observe(el);
+        });
+    });
+
+    // Form Handling
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        const originalText = btn.innerHTML;
+        
+        // Simple loading state
+        btn.innerHTML = `<span class="flex items-center gap-2 uppercase">Sending...</span>`;
+        btn.classList.add('opacity-80');
+        
+        // Simulate API call
+        setTimeout(() => {
+            // Reset form
+            document.getElementById('inputName').value = '';
+            document.getElementById('inputEmail').value = '';
+            document.getElementById('inputMessage').value = '';
+            
+            // Show modal
+            const modal = document.getElementById('successModal');
+            const content = document.getElementById('modalContent');
+            
+            modal.classList.remove('hidden');
+            // Allow display:flex to apply before transition
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('translate-y-10');
+            });
+
+            // Reset button
+            btn.innerHTML = originalText;
+            btn.classList.remove('opacity-80');
+        }, 1500);
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('successModal');
+        const content = document.getElementById('modalContent');
+        
+        modal.classList.add('opacity-0');
+        content.classList.add('translate-y-10');
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+</script>
+
+<script>
+// Fallback link handler (injected by ShaynaBuilder)
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Show alert if no modal exists
+      var modal = document.getElementById('page-not-found-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+      } else {
+        console.log('Navigation prevented: ' + this.href);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
